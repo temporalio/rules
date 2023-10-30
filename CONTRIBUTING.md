@@ -6,7 +6,8 @@
 * Rule identifier - `TMPRL` prefix + number. Often used interchangeably with "Rule number" which is ok.
 * Rule number - numeric part of the identifier. Often used interchangeably with "Rule identifier" which is ok.
 * Rule document - `rules/TMPRL<number>.md` markdown file describing the rule.
-* Rule category - grouping of common set of rules with a known identifier range.
+* Rule category - grouping of common set of rules with a known identifier range. There are only 3 today: SDK, server,
+  and cloud.
 * Rule category base number - starting rule number of the category range.
 
 ## Guidelines
@@ -33,12 +34,11 @@ Notes about what is best as a rule:
 * SDK-specific or environment-specific rules are OK.
   * Don't overthink the ordering of the rules within their category though. For example, not all rules of an SDK need to
     be near each other.
-  * Don't make new rules to represent language-specific variants of the same rule. If necessary, the rule document
+  * Don't make new rules to represent language-specific variants of the same rule. If necessary, the rule document can
+    call out language specifics.
 * Create rules for Temporal best practices, even if you can't programmatically reference them yet in something like an
   analyzer.
   * We can still link to and reference these best practices by their rule when supporting users.
-* It is better to have more rules in fewer categories than to have lots of categories.
-  * Try to make categories very broad. In reality, only a handful of categories probably ever need to exist.
 
 ### Creating a rule
 
@@ -70,12 +70,3 @@ Notes about what is best as a rule:
     a prefix for humans on the human message.
 * When applying to an error, do not wrap existing errors just to prefix.
   * If a user error/exception has traditionally been bubbled, do not wrap it just to add a message with this number.
-
-### Creating a rule category
-
-* Pick a rule number range starting with 00 and ending with 99.
-  * Try to avoid `0` in the first or second digit.
-  * Can just be range of 100, but can also be more.
-  * If completely separate category from what exists, try not to be adjacent to existing category.
-* Create a `rules/README.TMPRL<category-base-number>.md` file with a table that will contain all rules.
-* Create a section to link the category file from `rules/README.md`.

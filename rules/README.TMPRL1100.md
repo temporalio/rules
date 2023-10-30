@@ -1,6 +1,6 @@
 ### SDK Rules (TMPRL1100-TMPRL1299)
 
-Rules that apply to SDKs.
+Rules that apply to Temporal SDKs.
 
 Identifier | Description
 -----------|-------------

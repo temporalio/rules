@@ -6,7 +6,7 @@ Workflow code took too long to yield to Temporal.
 
 ## Description
 
-When an SDK detects that workflow code is running too long (often either 1 or 2 seconds) before waiting on temporal, a
+When an SDK detects that workflow code is running too long (often either 1 or 2 seconds) before waiting on Temporal, a
 deadlock detection error can occur. This can happen for multiple reasons:
 
 * Code is stuck in a busy loop (e.g. an infinite for loop)
