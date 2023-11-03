@@ -27,6 +27,8 @@ Notes about what is best as a rule:
   * Not every error is a rule. Only errors that are commonly encountered and deserve a full document explaining them
     deserve a rule.
   * It is important for the rule list does not grow way too large due to being overused for every small thing.
+  * A good rule of thumb is to not make a rule if it isn't an error or situation you would have a full documentation
+    page for on docs.temporal.io.
 * Prefer reusing fewer common rules over creating many specific rules.
   * For example, a single "payload conversion failure" rule for all things that could happen in either direction of
     payload conversion is much better than separate rules for to payload, from payload, metadata validation, etc.
@@ -43,8 +45,8 @@ Notes about what is best as a rule:
 ### Creating a rule
 
 * Pick an available number in the range in the category for the rule.
-  * Ideally the next available number in sequence is used, but this is not required. Don't overthink number ordering,
-    rules within a category have no adjacent number grouping expectations.
+  * The next available number in sequence should be used, but this is not required if there is a good reason not to.
+    Don't overthink number ordering, rules within a category have no adjacent number grouping expectations.
 * Create a file at `rules/TMPRL<number>.md` for the rule document.
   * The `#` heading at the top of the file should be `# TMPRL<number> - <description>`.
   * The file may have the following sections but does not have to:
@@ -60,7 +62,7 @@ Notes about what is best as a rule:
       "invalid workflow definition" rule, it is not the rule document's responsibility to explain what is a valid
       workflow definition in every language.
   * Linking from one rule to another is encouraged as needed.
-* Create an entry for the rule in the category's table in the `rules/README.TMPRL<category-base-number>.md` file.
+* Create an entry for the rule in the category's table in the `rules/README.md` file.
   * This must link the rule and the description must be the exact text of the title sans rule number prefix.
 
 ### Referencing a rule in code
