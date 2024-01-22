@@ -62,7 +62,7 @@ Notes about what is best as a rule:
       "invalid workflow definition" rule, it is not the rule document's responsibility to explain what is a valid
       workflow definition in every language.
   * Linking from one rule to another is encouraged as needed.
-* Create an entry for the rule in the category's table in the `rules/README.md` file.
+* Create an entry for the rule in the category's table in the `README.md` file.
   * This must link the rule and the description must be the exact text of the title sans rule number prefix.
 
 ### Referencing a rule in code
