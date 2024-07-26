@@ -7,13 +7,13 @@ A signal or update handler had not finished executing when the workflow finished
 ## Description
 
 An executing workflow comprises one or more concurrent tasks executing in a cooperative and logically single-threaded
-fashion. The precise nature of these tasks depends on the language: e.g. in Python they are asyncio coroutines, in
-Typescript they are the standard event loop tasks/microtasks, in Go they are goroutines under the control of a custom
-cooperative multitasking framework, in Java they are threads under the control of a custom cooperative multitasking
-framework, etc. One of these concurrent tasks corresponds to the workflow main function/method, and there may be others
-corresponding to spawned child tasks and handler executions. "Cooperative" means that switching between tasks only
-occurs at certain points: in Python, Typescript, and .NET these points are syntactically obvious (they have an `await`);
-in Java and Go they occur wherever you call an SDK API to perform an async operation.
+fashion. The precise nature of these tasks depends on the language: in Python they are asyncio coroutines, in Typescript
+they are the standard event loop microtasks, in Go they are goroutines under the control of a custom cooperative
+multitasking framework, in Java they are threads under the control of a custom cooperative multitasking framework, in
+.NET they are asynchronous tasks. One of these concurrent tasks corresponds to the workflow main function/method, and
+there may be others corresponding to spawned child tasks and handler executions. "Cooperative" means that switching
+between tasks only occurs at certain points: in Python, Typescript, and .NET these points are syntactically obvious
+(they have an `await`); in Java and Go they occur wherever you call an SDK API to perform an async operation.
 
 **Note: this warning, and the following discussion, do not apply to signals in Go.**
 
