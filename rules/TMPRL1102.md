@@ -4,22 +4,13 @@
 
 A signal or update handler had not finished executing when the workflow finished (completed, or continued-as-new).
 
+**Note: this warning and the following discussion do not apply to signals in Go.**
+
 ## Description
-
-An executing workflow comprises one or more concurrent tasks executing in a cooperative and logically single-threaded
-fashion. The precise nature of these tasks depends on the language: in Python they are asyncio coroutines, in Typescript
-they are the standard event loop microtasks, in Go they are goroutines under the control of a custom cooperative
-multitasking framework, in Java they are threads under the control of a custom cooperative multitasking framework, in
-.NET they are asynchronous tasks. One of these concurrent tasks corresponds to the workflow main function/method, and
-there may be others corresponding to spawned child tasks and handler executions. "Cooperative" means that switching
-between tasks only occurs at certain points: in Python, Typescript, and .NET these points are syntactically obvious
-(they have an `await`); in Java and Go they occur wherever you call an SDK API to perform an async operation.
-
-**Note: this warning, and the following discussion, do not apply to signals in Go.**
 
 When a workflow handles an update or signal, and the handler performs an async operation (e.g. it waits on a condition
 or timer, or executes an activity or child workflow), then the workflow executes the handler in a new concurrent task
-that can interleave with the execution of all other concurrent tasks.
+that can interleave with the execution of all other concurrent tasks (see [Background](#background)).
 
 This warning is informing you that the workflow main task finished while a signal or update handler task was
 still executing. There are two reasons that you might want to avoid this:
@@ -56,3 +47,14 @@ in Typescript, this looks like
 workflow.setHandler(myUpdate, myUpdateHandler, {unfinishedPolicy: HandlerUnfinishedPolicy.ABANDON})
 ```
 The default value of this policy is `WARN_AND_ABANDON`.
+
+## Background
+
+An executing workflow comprises one or more concurrent tasks executing in a cooperative and logically single-threaded
+fashion. The precise nature of these tasks depends on the language: in Python they are asyncio coroutines, in Typescript
+they are the standard event loop microtasks, in Go they are goroutines under the control of a custom cooperative
+multitasking framework, in Java they are threads under the control of a custom cooperative multitasking framework, in
+.NET they are asynchronous tasks. One of these concurrent tasks corresponds to the workflow main function/method, and
+there may be others corresponding to spawned child tasks and handler executions. "Cooperative" means that switching
+between tasks only occurs at certain points: in Python, Typescript, and .NET these points are syntactically obvious
+(they have an `await`); in Java and Go they occur wherever you call an SDK API to perform an async operation.
