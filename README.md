@@ -15,6 +15,7 @@ Identifier | Description
 -----------|-------------
 [TMPRL1100](rules/TMPRL1100.md) | Non-determinism detected during workflow replay
 [TMPRL1101](rules/TMPRL1101.md) | Deadlock detected during workflow run
+[TMPRL1102](rules/TMPRL1102.md) | Workflow finished while handlers are still running
 <!-- TODO:
 [TMPRL1102](rules/TMPRL1102.md) | Payload conversion failure
 [TMPRL1103](rules/TMPRL1103.md) | Using known non-deterministic construct (TODO: often for static analyzers)
