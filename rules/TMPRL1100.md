@@ -15,7 +15,7 @@ This usually happens in one of two cases: there is non-deterministic code causin
 a code change happened that took a different path for past workflow code.
 
 This is explained in depth in the
-[determinism section of the documentation](https://docs.temporal.io/workflows#deterministic-constraints).
+[determinism section of the documentation](https://docs.temporal.io/workflow-definition#deterministic-constraints).
 
 ## Remediations
 
