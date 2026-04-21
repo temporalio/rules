@@ -2,18 +2,22 @@
 
 ## Cause
 
-The size of a payload or collection of payloads has exceed configured size limits, either causing a warning to be emitted or a workflow/activity/Nexus task to fail.
+A payload or collection of payloads exceeded the configured size limit. The SDK logs a warning when payloads exceed the
+warning threshold and fails the task when payloads exceed the error limit.
 
 ## Description
 
-By default, the SDK will check the size of payloads as they move throughout workflows, activities, and Nexus operations. The SDK will log warnings if the size of the payloads are over the warning limit and throw exceptions or return errors if they are over the error limit.
-
-The error limit is only enforced within workers when attempting to submit messages to the Temporal server and they exceed the error limits as described by the server. When the error limit is exceeded, the worker task is proactively failed instead of sending the large payload to the server. This helps the server to prevent excessive resource usage and avoid potential performance issues when handling large payloads. Additionally, failing the task allows the task to be retried instead of failing the associated workflow.
+Depending on the SDK version, this limit is enforced either by the Temporal Service or by the SDK itself. When the SDK
+enforces the limit, the task is failed before the payload is sent to the server, allowing the task to be retried after a
+fix is deployed. When the Temporal Service enforces the limit, the behavior varies: the Workflow may be terminated, or
+the task may get stuck in a retry loop.
 
 ## Remediation
 
-To resolve this error, reduce the size of the payload so that it is below the error limit.
+Offload large payloads to external storage using the
+[claim check pattern](https://docs.temporal.io/troubleshooting/blob-size-limit-error#payload-size-limit). This replaces
+the payload with a small reference token in the Event History. The SDK retrieves the full payload from external storage
+transparently.
 
-Refer to https://docs.temporal.io/troubleshooting/blob-size-limit-error for further information about payload error limits and strategies to reduce payload sizes.
-
-Customers who use gRPC proxies that alter payloads before they are passed to the server (e.g. encrypting payloads, offloading to external storage, etc) should disable the error limit check in their workers. Please refer to the worker option documentation for the SDK on how to disable this behavior.
+See [Troubleshoot payload and gRPC message size limit errors](https://docs.temporal.io/troubleshooting/blob-size-limit-error)
+for a full list of error messages, behavior by SDK version, and resolution strategies.
