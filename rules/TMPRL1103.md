@@ -2,8 +2,7 @@
 
 ## Cause
 
-A payload or collection of payloads exceeded the configured size limit. The SDK logs a warning when payloads exceed the
-warning threshold and fails the task when payloads exceed the error limit.
+The size of a payload or collection of payloads has exceed configured size limits, either causing a warning to be emitted or a Workflow/Activity/Nexus task to fail.
 
 ## Description
 
