@@ -6,10 +6,9 @@ The size of a payload or collection of payloads has exceed configured size limit
 
 ## Description
 
-Depending on the SDK version, this limit is enforced either by the Temporal Service or by the SDK itself. When the SDK
-enforces the limit, the task is failed before the payload is sent to the server, allowing the task to be retried after a
-fix is deployed. When the Temporal Service enforces the limit, the behavior varies: the Workflow may be terminated, or
-the task may get stuck in a retry loop.
+Depending on the SDK version, the payload size limit is enforced either by the Temporal Service or by the SDK itself. When the SDK
+enforces the limit, the SDK fails the Task before the payload is sent to the server, allowing the Task to be retried after you deploy a fix. When the Temporal Service enforces the limit, the behavior varies: the Workflow may be terminated, or
+the Task may get stuck in a retry loop.
 
 ## Remediation
 
