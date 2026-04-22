@@ -17,5 +17,5 @@ Offload large payloads to external storage using the
 the payload with a small reference token in the Event History. The SDK retrieves the full payload from external storage
 transparently.
 
-See [Troubleshoot payload and gRPC message size limit errors](https://docs.temporal.io/troubleshooting/blob-size-limit-error)
+See [Message size limit errors](https://docs.temporal.io/troubleshooting/blob-size-limit-error)
 for a full list of error messages, behavior by SDK version, and resolution strategies.
