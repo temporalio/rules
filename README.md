@@ -41,6 +41,15 @@ Identifier | Description
 [TMPRL1120](rules/TMPRL1120.md) | Not in activity context
 -->
 
+### SDK Experimental Feature Rules (TMPRL1300-1399)
+
+Rules that identify experimental SDK features. Each rule covers one feature, describes how to opt into it, and tracks
+its status in each SDK.
+
+Identifier | Experimental Feature
+-----------|-------------
+[TMPRL1300](rules/TMPRL1300.md) | External storage
+
 ### Server Rules (TMPRL2100-2299)
 
 Rules that apply to the Temporal server.

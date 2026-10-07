@@ -6,8 +6,8 @@
 * Rule identifier - `TMPRL` prefix + number. Often used interchangeably with "Rule number" which is ok.
 * Rule number - numeric part of the identifier. Often used interchangeably with "Rule identifier" which is ok.
 * Rule document - `rules/TMPRL<number>.md` markdown file describing the rule.
-* Rule category - grouping of common set of rules with a known identifier range. There are only 3 today: SDK, server,
-  and cloud.
+* Rule category - grouping of common set of rules with a known identifier range. There are only 4 today: SDK,
+  experimental feature, server, and cloud.
 * Rule category base number - starting rule number of the category range.
 
 ## Guidelines
@@ -65,6 +65,21 @@ Notes about what is best as a rule:
 * Create an entry for the rule in the category's table in the `README.md` file.
   * This must link the rule and the description must be the exact text of the title sans rule number prefix.
 
+### Creating an experimental feature rule
+
+Experimental feature rules (TMPRL1300-1399) differ from other rules:
+
+* Create one rule per feature, shared by every SDK. Don't create a rule per SDK or per API within a feature.
+* Title the rule `<feature> experimental API`.
+* Use these sections instead of the ones above:
+  * `## Description` - what the feature does, in a short paragraph or two. Link to docs.temporal.io for the details.
+  * `## Opting in` - how to opt in, with a subsection per language where it differs. Say so when no opt-in is
+    required.
+  * `## Status` - a table with a row per SDK and columns for the first `Pre-release`, `Public Preview`, and `GA`
+    versions. Use `-` for a stage not yet reached and `Unreleased` for a stage in development.
+* When a feature reaches GA in every SDK, keep the rule document. Old SDK versions still link to it, and the number
+  must not be reused.
+
 ### Referencing a rule in code
 
 * When applying to an error, prefix the error message with `[TMPRL<number>] `.
@@ -72,3 +87,5 @@ Notes about what is best as a rule:
     a prefix for humans on the human message.
 * When applying to an error, do not wrap existing errors just to prefix.
   * If a user error/exception has traditionally been bubbled, do not wrap it just to add a message with this number.
+* When marking an experimental API, use the feature's rule as the diagnostic ID if the language supports one. For
+  example, in .NET use `[Experimental("TMPRL<number>", UrlFormat = "https://github.com/temporalio/rules/blob/main/rules/{0}.md")]`.
